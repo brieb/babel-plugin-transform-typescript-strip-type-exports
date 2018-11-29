@@ -43,18 +43,7 @@ export default function(babel: typeof BabelCore): BabelCore.PluginObj {
     },
     ExportDefaultDeclaration(path) {
       const declaration = path.node.declaration;
-
       if (t.isIdentifier(declaration) && isTypeWithoutBinding(declaration.name, path)) {
-        path.remove();
-      }
-
-      if (
-        (t.isTSAsExpression(declaration) ||
-          t.isTSTypeAssertion(declaration) ||
-          t.isTSNonNullExpression(declaration)) &&
-        t.isIdentifier(declaration.expression) &&
-        isTypeWithoutBinding(declaration.expression.name, path)
-      ) {
         path.remove();
       }
     },
