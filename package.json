@@ -1,0 +1,23 @@
+{
+  "name": "babel-plugin-transform-typescript-strip-type-exports",
+  "version": "0.0.0",
+  "description": "",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brieb/babel-plugin-transform-typescript-strip-type-exports.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brieb/babel-plugin-transform-typescript-strip-type-exports/issues"
+  },
+  "homepage": "https://github.com/brieb/babel-plugin-transform-typescript-strip-type-exports#readme"
+}
