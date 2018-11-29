@@ -4,6 +4,9 @@
       "presets": ["@babel/typescript"],
       "plugins": ["../lib/index.js"]
     },
+    "ts-only": {
+      "presets": ["@babel/typescript"]
+    },
     "full": {
       "presets": ["@babel/env", "@babel/typescript"],
       "plugins": [

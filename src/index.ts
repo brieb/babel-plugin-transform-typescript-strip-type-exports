@@ -1,21 +1,42 @@
 import * as BabelCore from "@babel/core";
 import { NodePath } from "@babel/traverse";
+import { createSet } from "./createSet";
 
 export default function(babel: typeof BabelCore): BabelCore.PluginObj {
+  return {
+    visitor: {
+      Program(path) {
+        const { tsVisitor, exportsVisitor } = createVisitors(babel);
+        path.traverse(tsVisitor);
+        path.traverse(exportsVisitor);
+      }
+    }
+  };
+}
+
+function createVisitors(babel: typeof BabelCore) {
   const { types: t } = babel;
 
-  const typeNames: { [name: string]: true | undefined } = {};
-  const typesVisitor: BabelCore.Visitor = {
+  const typeNameSet = createSet();
+  const enumNameSet = createSet();
+  const tsVisitor: BabelCore.Visitor = {
     TSInterfaceDeclaration(path) {
-      typeNames[path.node.id.name] = true;
+      typeNameSet.add(path.node.id.name);
     },
     TSTypeAliasDeclaration(path) {
-      typeNames[path.node.id.name] = true;
+      typeNameSet.add(path.node.id.name);
+    },
+    TSEnumDeclaration(path) {
+      enumNameSet.add(path.node.id.name);
     }
   };
 
-  function isTypeWithoutBinding(name: string, path: NodePath): boolean {
-    return !!typeNames[name] && !path.scope.hasBinding(name);
+  function isTypeWithoutValue(name: string, path: NodePath): boolean {
+    if (!typeNameSet.has(name)) {
+      return false;
+    }
+    const hasValue = enumNameSet.has(name) || path.scope.hasBinding(name);
+    return !hasValue;
   }
 
   const exportsVisitor: BabelCore.Visitor = {
@@ -27,10 +48,11 @@ export default function(babel: typeof BabelCore): BabelCore.PluginObj {
 
       const filteredSpecifiers = path.node.specifiers.filter(specifier => {
         if (t.isExportSpecifier(specifier)) {
-          return !isTypeWithoutBinding(specifier.local.name, path);
+          return !isTypeWithoutValue(specifier.local.name, path);
         }
         return true;
       });
+
       if (path.node.specifiers.length !== filteredSpecifiers.length) {
         if (filteredSpecifiers.length === 0) {
           path.remove();
@@ -43,35 +65,11 @@ export default function(babel: typeof BabelCore): BabelCore.PluginObj {
     },
     ExportDefaultDeclaration(path) {
       const declaration = path.node.declaration;
-      if (t.isIdentifier(declaration) && isTypeWithoutBinding(declaration.name, path)) {
+      if (t.isIdentifier(declaration) && isTypeWithoutValue(declaration.name, path)) {
         path.remove();
-      }
-    },
-    ExportSpecifier(path) {
-      const binding = path.scope.getBinding(path.node.local.name);
-      if (binding) {
-        let hasValueBinding = false;
-        const bindingPaths = [binding.path, ...binding.referencePaths];
-        for (const bindingPath of bindingPaths) {
-          if (bindingPath.parent !== path.node) {
-            if (!t.isTSInterfaceDeclaration(bindingPath.parent)) {
-              hasValueBinding = true;
-            }
-          }
-        }
-        if (!hasValueBinding) {
-          path.remove();
-        }
       }
     }
   };
 
-  return {
-    visitor: {
-      Program(path) {
-        path.traverse(typesVisitor);
-        path.traverse(exportsVisitor);
-      }
-    }
-  };
+  return { tsVisitor, exportsVisitor };
 }

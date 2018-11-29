@@ -4,8 +4,11 @@
   "scripts": {
     "tsc": "../node_modules/.bin/tsc --noEmit",
     "babel": "../node_modules/.bin/babel src --out-dir lib --extensions \".ts,.tsx\"",
+    "babel:ts": "BABEL_ENV=ts npm run babel",
+    "babel:ts-only": "BABEL_ENV=ts-only npm run babel",
+    "babel:full": "BABEL_ENV=full npm run babel",
     "build": "../node_modules/.bin/rimraf lib && npm run build:dts && npm run build:js",
     "build:dts": "../node_modules/.bin/tsc --emitDeclarationOnly",
-    "build:js": "BABEL_ENV=ts npm run babel"
+    "build:js": "npm run babel:ts"
   }
 }

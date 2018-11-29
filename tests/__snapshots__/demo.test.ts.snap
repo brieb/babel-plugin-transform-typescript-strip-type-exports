@@ -15,6 +15,24 @@ export default foo;
 
 exports[`demo build properly builds lib/export-default-declare-function.js: lib/export-default-declare-function.js 1`] = `"export default foo;"`;
 
+exports[`demo build properly builds lib/export-default-enum.d.ts: lib/export-default-enum.d.ts 1`] = `
+"declare enum Foo {
+    BAR = \\"BAR\\"
+}
+export default Foo;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-enum.js: lib/export-default-enum.js 1`] = `
+"var Foo;
+
+(function (Foo) {
+  Foo[\\"BAR\\"] = \\"BAR\\";
+})(Foo || (Foo = {}));
+
+export default Foo;"
+`;
+
 exports[`demo build properly builds lib/export-default-interface.d.ts: lib/export-default-interface.d.ts 1`] = `
 "interface Foo {
 }
@@ -90,6 +108,44 @@ export default Foo;
 exports[`demo build properly builds lib/export-default-type-and-value.js: lib/export-default-type-and-value.js 1`] = `
 "const Foo = {};
 export default Foo;"
+`;
+
+exports[`demo build properly builds lib/export-named-class.d.ts: lib/export-named-class.d.ts 1`] = `
+"declare class Foo {
+    bar: string;
+    constructor(bar: string);
+}
+export { Foo };
+"
+`;
+
+exports[`demo build properly builds lib/export-named-class.js: lib/export-named-class.js 1`] = `
+"class Foo {
+  constructor(bar) {
+    this.bar = bar;
+  }
+
+}
+
+export { Foo };"
+`;
+
+exports[`demo build properly builds lib/export-named-enum.d.ts: lib/export-named-enum.d.ts 1`] = `
+"declare enum Foo {
+    BAR = \\"BAR\\"
+}
+export { Foo };
+"
+`;
+
+exports[`demo build properly builds lib/export-named-enum.js: lib/export-named-enum.js 1`] = `
+"var Foo;
+
+(function (Foo) {
+  Foo[\\"BAR\\"] = \\"BAR\\";
+})(Foo || (Foo = {}));
+
+export { Foo };"
 `;
 
 exports[`demo build properly builds lib/export-named-interface.d.ts: lib/export-named-interface.d.ts 1`] = `
