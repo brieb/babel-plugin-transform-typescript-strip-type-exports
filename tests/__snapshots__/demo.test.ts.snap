@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`demo build properly builds lib/export-all-from-types.d.ts: lib/export-all-from-types.d.ts 1`] = `
+"export * from \\"./types\\";
+"
+`;
+
+exports[`demo build properly builds lib/export-all-from-types.js: lib/export-all-from-types.js 1`] = `"export * from \\"./types\\";"`;
+
+exports[`demo build properly builds lib/export-default-declare-function.d.ts: lib/export-default-declare-function.d.ts 1`] = `
+"declare function foo(): void;
+export default foo;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-declare-function.js: lib/export-default-declare-function.js 1`] = `"export default foo;"`;
+
+exports[`demo build properly builds lib/export-default-interface.d.ts: lib/export-default-interface.d.ts 1`] = `
+"interface Foo {
+}
+export default Foo;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-interface.js: lib/export-default-interface.js 1`] = `""`;
+
+exports[`demo build properly builds lib/export-default-interface-and-value.d.ts: lib/export-default-interface-and-value.d.ts 1`] = `
+"interface Foo {
+}
+declare class Foo {
+}
+export default Foo;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-interface-and-value.js: lib/export-default-interface-and-value.js 1`] = `
+"class Foo {}
+
+export default Foo;"
+`;
+
+exports[`demo build properly builds lib/export-default-interface-direct.d.ts: lib/export-default-interface-direct.d.ts 1`] = `
+"export default interface Foo {
+}
+"
+`;
+
+exports[`demo build properly builds lib/export-default-interface-direct.js: lib/export-default-interface-direct.js 1`] = `""`;
+
+exports[`demo build properly builds lib/export-default-ts-as-expression.d.ts: lib/export-default-ts-as-expression.d.ts 1`] = `
+"declare const _default: any;
+export default _default;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-ts-as-expression.js: lib/export-default-ts-as-expression.js 1`] = `"export default foo;"`;
+
+exports[`demo build properly builds lib/export-default-ts-non-null-expression.d.ts: lib/export-default-ts-non-null-expression.d.ts 1`] = `
+"declare function foo(): void;
+declare const _default: typeof foo;
+export default _default;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-ts-non-null-expression.js: lib/export-default-ts-non-null-expression.js 1`] = `"export default foo;"`;
+
+exports[`demo build properly builds lib/export-default-ts-type-assertion.d.ts: lib/export-default-ts-type-assertion.d.ts 1`] = `
+"declare const _default: any;
+export default _default;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-ts-type-assertion.js: lib/export-default-ts-type-assertion.js 1`] = `"export default foo;"`;
+
+exports[`demo build properly builds lib/export-default-type.d.ts: lib/export-default-type.d.ts 1`] = `
+"declare type Foo = {};
+export default Foo;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-type.js: lib/export-default-type.js 1`] = `""`;
+
+exports[`demo build properly builds lib/export-default-type-and-value.d.ts: lib/export-default-type-and-value.d.ts 1`] = `
+"declare const Foo: {};
+declare type Foo = {};
+export default Foo;
+"
+`;
+
+exports[`demo build properly builds lib/export-default-type-and-value.js: lib/export-default-type-and-value.js 1`] = `
+"const Foo = {};
+export default Foo;"
+`;
+
+exports[`demo build properly builds lib/export-named-interface.d.ts: lib/export-named-interface.d.ts 1`] = `
+"export { Foo };
+interface Foo {
+}
+"
+`;
+
+exports[`demo build properly builds lib/export-named-interface.js: lib/export-named-interface.js 1`] = `""`;
+
+exports[`demo build properly builds lib/export-named-interface-and-value.d.ts: lib/export-named-interface-and-value.d.ts 1`] = `
+"interface Foo {
+}
+declare class Foo {
+}
+export { Foo };
+"
+`;
+
+exports[`demo build properly builds lib/export-named-interface-and-value.js: lib/export-named-interface-and-value.js 1`] = `
+"class Foo {}
+
+export { Foo };"
+`;
+
+exports[`demo build properly builds lib/export-named-interface-direct.d.ts: lib/export-named-interface-direct.d.ts 1`] = `
+"export interface Foo {
+}
+"
+`;
+
+exports[`demo build properly builds lib/export-named-interface-direct.js: lib/export-named-interface-direct.js 1`] = `""`;
+
+exports[`demo build properly builds lib/export-named-type.d.ts: lib/export-named-type.d.ts 1`] = `
+"declare type Foo = {};
+export { Foo };
+"
+`;
+
+exports[`demo build properly builds lib/export-named-type.js: lib/export-named-type.js 1`] = `""`;
+
+exports[`demo build properly builds lib/export-named-type-direct.d.ts: lib/export-named-type-direct.d.ts 1`] = `
+"export declare type Foo = {};
+"
+`;
+
+exports[`demo build properly builds lib/export-named-type-direct.js: lib/export-named-type-direct.js 1`] = `""`;
+
+exports[`demo build properly builds lib/reexport-named-type.d.ts: lib/reexport-named-type.d.ts 1`] = `
+"import { Foo, Bar as IBar } from \\"./types\\";
+interface Bar extends IBar {
+}
+declare class Bar {
+}
+export { Foo, Bar };
+"
+`;
+
+exports[`demo build properly builds lib/reexport-named-type.js: lib/reexport-named-type.js 1`] = `
+"import { Foo } from \\"./types\\";
+
+class Bar {}
+
+export { Foo, Bar };"
+`;
+
+exports[`demo build properly builds lib/types.d.ts: lib/types.d.ts 1`] = `
+"export declare type Foo = {};
+export interface Bar {
+}
+"
+`;
+
+exports[`demo build properly builds lib/types.js: lib/types.js 1`] = `""`;

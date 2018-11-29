@@ -1,0 +1,16 @@
+{
+  "env": {
+    "ts": {
+      "presets": ["@babel/typescript"],
+      "plugins": ["../lib/index.js"]
+    },
+    "full": {
+      "presets": ["@babel/env", "@babel/typescript"],
+      "plugins": [
+        "../lib/index.js",
+        "@babel/proposal-class-properties",
+        "@babel/proposal-object-rest-spread"
+      ]
+    }
+  }
+}

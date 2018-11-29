@@ -7,7 +7,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "jest": "jest",
+    "lint": "eslint . --ext .js,.ts",
+    "test": "tsc --noEmit && npm run jest && npm run lint"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,29 @@
   "bugs": {
     "url": "https://github.com/brieb/babel-plugin-transform-typescript-strip-type-exports/issues"
   },
-  "homepage": "https://github.com/brieb/babel-plugin-transform-typescript-strip-type-exports#readme"
+  "homepage": "https://github.com/brieb/babel-plugin-transform-typescript-strip-type-exports#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@babel/types": "^7.1.6",
+    "@types/babel__core": "^7.0.3",
+    "@types/babel__generator": "^7.0.1",
+    "@types/babel__template": "^7.0.1",
+    "@types/babel__traverse": "^7.0.2",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.10",
+    "eslint": "^5.9.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.1.5",
+    "typescript-eslint-parser": "^21.0.1"
+  }
 }
